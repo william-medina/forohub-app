@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Toastify__toast--success {
+    color: #2dd4bf !important;
+}
+
+.Toastify__toast--success svg {
+    fill: #2dd4bf !important;
+}
+
+.Toastify__toast--success .Toastify__progress-bar {
+    background-color: #2dd4bf !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #2dd4bf inset;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 4px solid transparent;
+    border-top: 4px solid #4fd1c5; /* Teal color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+  
