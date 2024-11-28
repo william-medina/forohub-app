@@ -14,8 +14,9 @@
 4. [Integración con la API](#integración-con-la-api)
 5. [Instrucciones](#instrucciones)
 6. [Capturas de Pantalla](#capturas-de-pantalla)
-7. [Licencia](#licencia)
-8. [Autor](#autor)
+7. [Ver el Proyecto en Producción](#ver-el-proyecto-en-producción)
+8. [Licencia](#licencia)
+9. [Autor](#autor)
 
 ## Descripción
 
@@ -203,6 +204,15 @@ Aquí hay algunas capturas de pantalla de la App de **ForoHub**:
 
 ### Notificaciones
 <img src="./public/screenshots/notify.png" alt="Vista de la página de notificaciones con mensajes recientes y la opción de marcar como vistas" width="500">
+
+## Ver el Proyecto en Producción
+
+El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, listo para ser explorado. Puedes acceder a la aplicación en el siguiente enlace:
+
+👉 [Ver Proyecto en Producción](https://forohub.william-medina.com)
+
+**Nota:**  
+Ten en cuenta que la API puede tardar unos momentos en estar completamente funcional si no ha sido utilizada recientemente. Esto es normal debido a las limitaciones de su entorno de ejecución. Si experimentas algún retraso, simplemente espera unos segundos e inténtalo de nuevo.
 
 
 
