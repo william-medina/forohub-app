@@ -60,7 +60,7 @@ function UserUpdate() {
             }
         },
         onSuccess: () => {
-            setUsernameForm({username: userData.username})
+            setUsernameForm({username: userData!.username})
             setErrorUsernameMessage(null);
             queryClient.invalidateQueries({ queryKey: ['currentUser'] });
             toast.success('Nombre de usuario actualizado!');

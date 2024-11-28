@@ -66,11 +66,11 @@ function ProfileView() {
                 </div>
                 <div className="bg-gray-800 rounded-lg p-3 sm-500:p-4 text-center flex flex-col justify-between">
                     <h3 className="leading-5 text-base sm-500:text-[1.125rem] font-semibold text-teal-400">Respuestas Realizadas</h3>
-                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.responsesCount}</p>
+                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.responsesCount || 0}</p>
                 </div>
                 <div className="bg-gray-800 rounded-lg p-3 sm-500:p-4 text-center flex flex-col justify-between">
                     <h3 className="leading-5 text-base sm-500:text-[1.125rem] font-semibold text-teal-400">Tópicos Siguiendo</h3>
-                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.followedTopicsCount}</p>
+                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.followedTopicsCount || 0}</p>
                 </div>
             </div>
 
