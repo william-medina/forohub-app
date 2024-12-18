@@ -82,7 +82,7 @@ La App de **ForoHub** depende de una API externa para obtener datos y manejar la
 
 La API para **ForoHub** se encuentra en un repositorio separado. Puedes encontrarla aquí:
 
-- [Catálogo de Libros API](https://github.com/william-medina/forohub-api) - Este repositorio contiene la API en Spring Boot.
+- [ForoHub API](https://github.com/william-medina/forohub-api) - Este repositorio contiene la API en Spring Boot.
 
 
 ### Configuración de la API
