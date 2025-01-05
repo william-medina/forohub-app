@@ -211,8 +211,8 @@ El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, lis
 
 👉 [Ver Proyecto en Producción](https://forohub.william-medina.com)
 
-**Nota:**  
-Ten en cuenta que la API puede tardar unos momentos en estar completamente funcional si no ha sido utilizada recientemente. Esto es normal debido a las limitaciones de su entorno de ejecución. Si experimentas algún retraso, simplemente espera unos segundos e inténtalo de nuevo.
+
+> **⚠️ Importante**: Ten en cuenta que la API puede tardar unos momentos en estar completamente funcional si no ha sido utilizada recientemente. Esto es normal debido a las limitaciones de su entorno de ejecución. Si experimentas algún retraso, simplemente espera unos minutos e inténtalo de nuevo.
 
 
 
