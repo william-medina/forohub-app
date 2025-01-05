@@ -3,7 +3,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { getCurrentUser } from "../api/AuthAPI";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthStore } from "../stores/useAuthStore";
 import { useAuthErrorHandler } from "../hooks/useAuthErrorHandler";
@@ -21,6 +21,20 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
         retry: false, 
         refetchOnWindowFocus: false,
     });
+
+
+    const [showConnectingMessage, setShowConnectingMessage] = useState(false);
+ 
+    useEffect(() => {
+        if (isLoading) {
+            const timer = setTimeout(() => {
+                setShowConnectingMessage(true);
+            }, 10000);
+
+            return () => clearTimeout(timer); 
+        }
+        
+    }, [isLoading]);
 
     useEffect(() => {
         setData(user);
@@ -45,8 +59,14 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
     return (
         <>
             {isLoading ? (
-                <div className="flex justify-center items-center h-[90vh]">
+                <div className="flex justify-center items-center h-[90vh] relative">
                     <div className="w-12 sm-500:w-16 h-12 sm-500:h-16 border-t-4 border-teal-400 border-solid rounded-full animate-spin"></div>
+                    {showConnectingMessage && (
+                        <div className="absolute bottom-60 text-center">
+                            <p className="text-teal-500">Conectando al servidor...</p>
+                            <p className="text-teal-500">Por favor espera unos minutos.</p>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <>
