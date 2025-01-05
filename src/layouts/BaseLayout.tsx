@@ -22,9 +22,8 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
         refetchOnWindowFocus: false,
     });
 
-
     const [showConnectingMessage, setShowConnectingMessage] = useState(false);
- 
+    
     useEffect(() => {
         if (isLoading) {
             const timer = setTimeout(() => {
@@ -59,14 +58,12 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
     return (
         <>
             {isLoading ? (
-                <div className="flex justify-center items-center h-[90vh] relative">
+                <div className="flex justify-center items-center h-[90vh] flex-col pt-[4.1rem]">
                     <div className="w-12 sm-500:w-16 h-12 sm-500:h-16 border-t-4 border-teal-400 border-solid rounded-full animate-spin"></div>
-                    {showConnectingMessage && (
-                        <div className="absolute bottom-60 text-center">
-                            <p className="text-teal-500">Conectando al servidor...</p>
-                            <p className="text-teal-500">Por favor espera unos minutos.</p>
-                        </div>
-                    )}
+                    <div className={`${showConnectingMessage ? 'visible' : 'invisible'} text-center mt-4`}>
+                        <p className="text-teal-500 text-sm sm-500:text-base">Conectando al servidor...</p>
+                        <p className="text-teal-500 text-sm sm-500:text-base">Por favor espera unos minutos.</p>
+                    </div>
                 </div>
             ) : (
                 <>
