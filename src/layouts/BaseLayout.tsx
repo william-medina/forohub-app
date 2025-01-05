@@ -28,13 +28,14 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
         if (isLoading) {
             const timer = setTimeout(() => {
                 setShowConnectingMessage(true);
-            }, 10000);
+            }, 12000);
 
             return () => clearTimeout(timer); 
+        } else {
+            setShowConnectingMessage(false);
         }
-        
     }, [isLoading]);
-
+  
     useEffect(() => {
         setData(user);
     }, [user])
