@@ -20,17 +20,17 @@
 
 ## 📝 Descripción
 
-**ForoHub** es una aplicación frontend desarrollada con **React** y **TypeScript**, diseñada para interactuar con una API construida en **Spring Boot**. Esta plataforma permite a los usuarios explorar, crear y participar en discusiones organizadas por cursos, incluyendo la gestión de tópicos y respuestas.
+**ForoHub** es una aplicación desarrollada con **React** y **TypeScript**, diseñada para interactuar con una API construida en **Spring Boot**. Esta plataforma permite a los usuarios explorar, crear y participar en tópicos organizados por cursos, incluyendo la gestión de respuestas.
 
-Los usuarios pueden registrarse, gestionar sus perfiles e interactuar con las discusiones. Además, la aplicación incluye características para administradores, moderadores e instructores, quienes tienen permisos especiales para gestionar contenido y marcar soluciones en los tópicos.
+Los usuarios pueden registrarse, gestionar sus perfiles e interactuar con los tópicos. Además, la aplicación incluye características para administradores, moderadores e instructores, quienes tienen permisos especiales para gestionar contenido.
 
-ForoHub combina un diseño moderno y responsivo, creado con Tailwind CSS, para proporcionar una experiencia de usuario atractiva y eficiente, funcionando como la interfaz perfecta para la API del backend.
+ForoHub combina un diseño moderno y responsivo, creado con Tailwind CSS, para proporcionar una experiencia de usuario atractiva y eficiente, funcionando como la interfaz perfecta para el backend.
 
 ## ✨ Características  
 
 - **🏠 Página principal (Home)**:  
   - Visualización de tópicos recientes con un sistema de paginación eficiente para facilitar la navegación.  
-  - Herramientas avanzadas de filtrado por estado, palabra clave o curso, garantizando búsquedas rápidas y precisas.  
+  - Herramientas de filtrado por estado, palabra clave o curso, garantizando búsquedas rápidas y precisas.  
   - Indicadores visuales intuitivos que destacan si un tópico ha sido solucionado y el número de respuestas asociadas.  
 
 - **🔔 Notificaciones en tiempo real**:  
@@ -40,8 +40,8 @@ ForoHub combina un diseño moderno y responsivo, creado con Tailwind CSS, para p
 
 - **💬 Gestión de tópicos y respuestas**:  
   - Funcionalidad completa para que los usuarios puedan crear, editar y eliminar sus propios tópicos.  
-  - Interactividad que permite responder tanto a tópicos propios como de otros usuarios, con opciones de edición y eliminación de las respuestas propias.  
-  - Posibilidad de seguir tópicos específicos para recibir notificaciones sobre nuevas respuestas o cambios de estado.  
+  - Interactividad que permite responder a tópicos propios y de otros usuarios, así como editar y eliminar tanto las respuestas propias como los tópicos creados por el usuario.
+  - Posibilidad de seguir tópicos para recibir notificaciones sobre nuevas respuestas o cambios de estado.  
 
 - **🔑 Funciones avanzadas para roles con privilegios**:  
   - Instructores, moderadores y administradores disponen de permisos exclusivos para modificar o eliminar cualquier tópico o respuesta dentro de la plataforma.  
@@ -212,7 +212,7 @@ El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, lis
 👉 [Ver Proyecto en Producción](https://forohub.william-medina.com)
 
 
-> **⚠️ Importante**: Ten en cuenta que la API puede tardar unos momentos en estar completamente funcional si no ha sido utilizada recientemente. Esto es normal debido a las limitaciones de su entorno de ejecución. Si experimentas algún retraso, simplemente espera unos minutos e inténtalo de nuevo.
+> **⚠️ Importante**: Ten en cuenta que la API podría tardar unos instantes en responder si no ha sido utilizada recientemente, ya que el servidor necesita tiempo para iniciarse. Esto es normal debido a las limitaciones del entorno de ejecución. Si experimentas algún retraso, espera unos minutos hasta que el servidor esté operativo e inténtalo nuevamente.
 
 
 
