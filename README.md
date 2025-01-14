@@ -8,17 +8,17 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## Índice
-1. [Descripción](#descripción)
-2. [Características](#características)
-3. [Tecnologías Utilizadas](#tecnologías-utilizadas)
-4. [Integración con la API](#integración-con-la-api)
-5. [Instrucciones](#instrucciones)
-6. [Capturas de Pantalla](#capturas-de-pantalla)
-7. [Ver el Proyecto en Producción](#ver-el-proyecto-en-producción)
-8. [Licencia](#licencia)
-9. [Autor](#autor)
+1. [📝 Descripción](#-descripción)
+2. [✨ Características](#✨-características)
+3. [💻 Tecnologías Utilizadas](#💻-tecnologías-utilizadas)
+4. [🌐 Integración con la API](#🌐-integración-con-la-api)
+5. [⚙️ Instrucciones](#⚙️-instrucciones)
+6. [📸 Capturas de Pantalla](#📸-capturas-de-pantalla)
+7. [🚀 Ver el Proyecto en Producción](#🚀-ver-el-proyecto-en-producción)
+8. [📜 Licencia](#📜-licencia)
+9. [👨‍💻 Autor](#👨‍💻-autor)
 
-## Descripción
+## 📝 Descripción
 
 **ForoHub** es una aplicación frontend desarrollada con **React** y **TypeScript**, diseñada para interactuar con una API construida en **Spring Boot**. Esta plataforma permite a los usuarios explorar, crear y participar en discusiones organizadas por cursos, incluyendo la gestión de tópicos y respuestas.
 
@@ -26,40 +26,40 @@ Los usuarios pueden registrarse, gestionar sus perfiles e interactuar con las di
 
 ForoHub combina un diseño moderno y responsivo, creado con Tailwind CSS, para proporcionar una experiencia de usuario atractiva y eficiente, funcionando como la interfaz perfecta para la API del backend.
 
-## Características  
+## ✨ Características  
 
-- **Página principal (Home)**:  
+- **🏠 Página principal (Home)**:  
   - Visualización de tópicos recientes con un sistema de paginación eficiente para facilitar la navegación.  
   - Herramientas avanzadas de filtrado por estado, palabra clave o curso, garantizando búsquedas rápidas y precisas.  
   - Indicadores visuales intuitivos que destacan si un tópico ha sido solucionado y el número de respuestas asociadas.  
 
-- **Notificaciones en tiempo real**:  
+- **🔔 Notificaciones en tiempo real**:  
   - Ícono de notificaciones en el encabezado que muestra un contador dinámico de mensajes no leídos.  
   - Actualización periódica automatizada para detectar nuevas notificaciones en tiempo real.  
   - Acceso directo a la página de notificaciones desde el ícono, donde se pueden ver las notificaciones completas y redirigir a los tópicos correspondientes. Las notificaciones pueden eliminarse o marcarse como vistas para una gestión más organizada. 
 
-- **Gestión de tópicos y respuestas**:  
+- **💬 Gestión de tópicos y respuestas**:  
   - Funcionalidad completa para que los usuarios puedan crear, editar y eliminar sus propios tópicos.  
   - Interactividad que permite responder tanto a tópicos propios como de otros usuarios, con opciones de edición y eliminación de las respuestas propias.  
   - Posibilidad de seguir tópicos específicos para recibir notificaciones sobre nuevas respuestas o cambios de estado.  
 
-- **Funciones avanzadas para roles con privilegios**:  
+- **🔑 Funciones avanzadas para roles con privilegios**:  
   - Instructores, moderadores y administradores disponen de permisos exclusivos para modificar o eliminar cualquier tópico o respuesta dentro de la plataforma.  
   - Capacidad de marcar una respuesta como solución, lo que cierra automáticamente el tópico para nuevas interacciones y lo marca como resuelto.  
 
-- **Página de perfil del usuario**:  
+- **👤 Página de perfil del usuario**:  
   - Visualización de estadísticas personales, incluyendo el número de tópicos creados, respuestas realizadas y tópicos seguidos.  
   - Herramientas para actualizar información personal como el nombre de usuario y el password.  
   - Listado interactivo que permite alternar entre tópicos creados y seguidos, con opciones de filtrado por palabra clave.  
 
 
-- **Autenticación**:  
+- **🔒 Autenticación**:  
   - Proceso seguro de registro y acceso a la plataforma mediante login.  
   - Envío automatizado de email para la confirmación de cuenta, con opción de reenvío en caso de ser necesario.  
   - Funcionalidad para solicitar y gestionar tokens de recuperación de password en caso de olvido.  
 
 
-## Tecnologías Utilizadas
+## 💻 Tecnologías Utilizadas
 
 - **React**: Una biblioteca de JavaScript para construir interfaces de usuario.
 - **TypeScript**: Un superconjunto tipado de JavaScript que se compila a JavaScript puro.
@@ -74,7 +74,7 @@ ForoHub combina un diseño moderno y responsivo, creado con Tailwind CSS, para p
 - **Heroicons**: Un conjunto de íconos diseñados para ser usados con Tailwind CSS.
 
 
-## Integración con la API
+## 🌐 Integración con la API
 
 La App de **ForoHub** depende de una API externa para obtener datos y manejar las interacciones del usuario. La API es esencial para el correcto funcionamiento de la aplicación.
 
@@ -95,7 +95,7 @@ La aplicación frontend se comunica con la API del backend a través de una vari
 
 Asegúrate de que esta variable apunte al endpoint correcto de la API.
 
-## Instrucciones
+## ⚙️ Instrucciones
 
 Para comenzar con App de **ForoHub**, sigue estos pasos:
 
@@ -177,7 +177,7 @@ Para construir la aplicación para producción, sigue estos pasos:
 Siguiendo estos pasos, generarás una versión lista para producción del App de **ForoHub**.
 
 
-## Capturas de Pantalla
+## 📸 Capturas de Pantalla
 
 Aquí hay algunas capturas de pantalla de la App de **ForoHub**:
 
@@ -205,7 +205,7 @@ Aquí hay algunas capturas de pantalla de la App de **ForoHub**:
 ### Notificaciones
 <img src="./public/screenshots/notify.png" alt="Vista de la página de notificaciones con mensajes recientes y la opción de marcar como vistas" width="500">
 
-## Ver el Proyecto en Producción
+## 🚀 Ver el Proyecto en Producción
 
 El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, listo para ser explorado. Puedes acceder a la aplicación en el siguiente enlace:
 
@@ -216,12 +216,12 @@ El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, lis
 
 
 
-## Licencia
+## 📜 Licencia
 
 Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](./LICENSE).
 
 
-## Autor
+## 👨‍💻 Autor
 
 La aplicación de **ForoHub** es desarrollada y mantenida por:
 
