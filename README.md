@@ -9,14 +9,14 @@
 
 ## Índice
 1. [📝 Descripción](#-descripción)
-2. [✨ Características](#✨-características)
-3. [💻 Tecnologías Utilizadas](#💻-tecnologías-utilizadas)
-4. [🌐 Integración con la API](#🌐-integración-con-la-api)
-5. [⚙️ Instrucciones](#⚙️-instrucciones)
-6. [📸 Capturas de Pantalla](#📸-capturas-de-pantalla)
-7. [🚀 Ver el Proyecto en Producción](#🚀-ver-el-proyecto-en-producción)
-8. [📜 Licencia](#📜-licencia)
-9. [👨‍💻 Autor](#👨‍💻-autor)
+2. [✨ Características](#-características)
+3. [💻 Tecnologías Utilizadas](#-tecnologías-utilizadas)
+4. [🌐 Integración con la API](#-integración-con-la-api)
+5. [⚙️ Instrucciones](#-instrucciones)
+6. [📸 Capturas de Pantalla](#-capturas-de-pantalla)
+7. [🚀 Ver el Proyecto en Producción](#-ver-el-proyecto-en-producción)
+8. [📜 Licencia](#-licencia)
+9. [👨‍💻 Autor](#-autor)
 
 ## 📝 Descripción
 
