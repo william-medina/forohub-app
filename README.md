@@ -12,7 +12,7 @@
 2. [✨ Características](#-características)
 3. [💻 Tecnologías Utilizadas](#-tecnologías-utilizadas)
 4. [🌐 Integración con la API](#-integración-con-la-api)
-5. [⚙️ Instrucciones](#-instrucciones)
+5. [🛠️ Instrucciones](#-instrucciones)
 6. [📸 Capturas de Pantalla](#-capturas-de-pantalla)
 7. [🚀 Ver el Proyecto en Producción](#-ver-el-proyecto-en-producción)
 8. [📜 Licencia](#-licencia)
@@ -95,7 +95,7 @@ La aplicación frontend se comunica con la API del backend a través de una vari
 
 Asegúrate de que esta variable apunte al endpoint correcto de la API.
 
-## ⚙️ Instrucciones
+## 🛠️ Instrucciones
 
 Para comenzar con App de **ForoHub**, sigue estos pasos:
 
