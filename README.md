@@ -1,4 +1,4 @@
-# ForoHub App
+# 🌐 ForoHub App
 ![Frontend](https://img.shields.io/badge/Frontend-React-blue)
 ![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen)
 ![Language](https://img.shields.io/badge/Language-TypeScript-blue)
@@ -7,7 +7,7 @@
 ![API](https://img.shields.io/badge/External%20API-Spring%20Boot-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## Índice
+## 📋 Índice
 1. [📝 Descripción](#-descripción)
 2. [✨ Características](#-características)
 3. [💻 Tecnologías Utilizadas](#-tecnologías-utilizadas)
