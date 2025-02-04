@@ -1,0 +1,15 @@
+User-agent: *
+
+Disallow: /profile
+Disallow: /notifications
+Disallow: /topic/create
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /request-code
+Disallow: /reset-password
+Disallow: /confirm-account
+
+Allow: /
+
+# Sitemap: https://forohub.william-medina.com/sitemap.xml
