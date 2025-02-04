@@ -46,6 +46,7 @@ function FilterBar({
                     <button
                         onClick={handleResetFilters}
                         className="flex items-center space-x-1 text-teal-400 hover:text-teal-300 transition-colors duration-300"
+                        aria-label="Restablecer filtros"
                     >
                         <ArrowPathIcon className="w-5 sm-500:w-6" />
                     </button>

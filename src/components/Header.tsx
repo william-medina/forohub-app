@@ -60,10 +60,11 @@ function Header({user} : HeaderProps) {
                 {localStorage.getItem('AUTH_TOKEN') ? (
                     <div className="gap-3 sm-500:gap-4 text-sm sm-500:text-base text-center flex">
                      
-                         <button
+                        <button
                             className={`block sm-500:hidden relative rounded-t-md cursor-pointer p-1 duration-300 ${menuOpen ? 'bg-gray-800 text-teal-600' : 'bg-gray-900 text-teal-400'}`}
                             onMouseEnter={handleMenuToggle} 
                             onMouseLeave={handleMenuClose}
+                            aria-label="Abrir menú"
                         >
                             <Bars3Icon className="w-8" title="Menú"/>
                             
@@ -144,9 +145,10 @@ function Header({user} : HeaderProps) {
                     
                     <div className="flex gap-3 sm-500:gap-4">
                         <button
-                             className={`block sm-500:hidden relative rounded-t-md cursor-pointer p-1 duration-300 ${menuOpen ? 'bg-gray-800 text-teal-600' : 'bg-gray-900 text-teal-400'}`}
+                            className={`block sm-500:hidden relative rounded-t-md cursor-pointer p-1 duration-300 ${menuOpen ? 'bg-gray-800 text-teal-600' : 'bg-gray-900 text-teal-400'}`}
                             onMouseEnter={handleMenuToggle} 
                             onMouseLeave={handleMenuClose}
+                            aria-label="Abrir menú"
                         >
                             <Bars3Icon className="w-8" />
                         </button>
