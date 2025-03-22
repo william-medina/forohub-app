@@ -111,7 +111,7 @@ function UserUpdate() {
                                     onChange={(e) => setUsernameForm({username: e.target.value})}
                                     value={usernameForm?.username || ""}
                                     placeholder="Nuevo Usuario"
-                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
+                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-hidden focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
                                     autoComplete="username"
                                     
                                 />
@@ -141,7 +141,7 @@ function UserUpdate() {
                                     onChange={handleChange}
                                     value={passwordForm.current_password}
                                     placeholder="Password Actual"
-                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
+                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-hidden focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
                                     autoComplete="current-password"
                                 />
                             </div>
@@ -153,7 +153,7 @@ function UserUpdate() {
                                     onChange={handleChange}
                                     value={passwordForm.password}
                                     placeholder="Nuevo Password"
-                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
+                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-hidden focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
                                     autoComplete="new-password"
                                 />
                             </div>
@@ -165,7 +165,7 @@ function UserUpdate() {
                                     onChange={handleChange}
                                     value={passwordForm.password_confirmation}
                                     placeholder="Confirmar Password"
-                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
+                                    className="text-sm sm-500:text-base w-full p-3 rounded-lg bg-gray-900 text-white outline-hidden focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
                                     autoComplete="new-password"
                                 />
                             </div>

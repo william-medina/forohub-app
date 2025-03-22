@@ -57,7 +57,7 @@ function FormWrapper<T>({
                                 type={field.type}
                                 id={field.name}
                                 name={field.name}
-                                className="w-full p-2 sm-500:p-3 text-sm sm-500:text-base rounded bg-gray-700 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                                className="w-full p-2 sm-500:p-3 text-sm sm-500:text-base rounded-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-teal-400"
                                 placeholder={field.placeholder}
                                 value={(formData as any)[field.name]}
                                 onChange={handleChange}

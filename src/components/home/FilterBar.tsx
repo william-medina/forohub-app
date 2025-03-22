@@ -45,7 +45,7 @@ function FilterBar({
                     </h2>
                     <button
                         onClick={handleResetFilters}
-                        className="flex items-center space-x-1 text-teal-400 hover:text-teal-300 transition-colors duration-300"
+                        className="flex items-center space-x-1 text-teal-400 hover:text-teal-300 transition-colors cursor-pointer duration-300"
                         aria-label="Restablecer filtros"
                     >
                         <ArrowPathIcon className="w-5 sm-500:w-6" />
@@ -62,7 +62,7 @@ function FilterBar({
                             placeholder="Buscar por título"
                             value={searchKeyword}
                             onChange={(e) => setSearchKeyword(e.target.value)}
-                            className="w-full p-2 bg-gray-800 text-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 transition-colors duration-300"
+                            className="w-full p-2 bg-gray-800 text-gray-300 rounded-md shadow-md focus:outline-hidden focus:ring-2 focus:ring-teal-400 transition-colors duration-300"
                         />
                     </div>
 

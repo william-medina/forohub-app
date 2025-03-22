@@ -125,7 +125,7 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
                         id={`content-${response.id}`}
                         name="content"
                         rows={rows}
-                        className="w-full mt-2 p-3 text-sm sm-500:text-base bg-gray-900 text-gray-100 leading-4 sm-500:leading-5 rounded-md focus:outline-none"
+                        className="w-full mt-2 p-3 text-sm sm-500:text-base bg-gray-900 text-gray-100 leading-4 sm-500:leading-5 rounded-md focus:outline-hidden"
                         placeholder="Escribe tu respuesta actualizada aquí..."
                         value={content}
                         onChange={(e) => setContent(e.target.value)}

@@ -119,7 +119,7 @@ function ConfirmAccount() {
                                 id="email"
                                 value={confirmationFormData.email}
                                 onChange={e => setConfirmationFormData({ email: e.target.value })}
-                                className="w-full p-3 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
+                                className="w-full p-3 bg-gray-700 text-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-teal-400"
                                 placeholder="Email"
                                 autoComplete="email"
                             />

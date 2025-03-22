@@ -36,7 +36,7 @@ function Pagination({
             <button
                 onClick={handlePrevious}
                 disabled={pagination.first}
-                className="px-2 sm-500:px-4 py-2 bg-teal-400 border-teal-400 border-2 text-gray-900 rounded-md hover:bg-teal-500 hover:border-teal-500  disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-800 transition-colors duration-300"
+                className="px-2 sm-500:px-4 py-2 bg-teal-400 border-teal-400 border-2 text-gray-900 rounded-md hover:bg-teal-500 hover:border-teal-500  disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-800 cursor-pointer disabled:cursor-not-allowed transition-colors duration-300"
             >
                 Anterior
             </button>
@@ -46,7 +46,7 @@ function Pagination({
             <button
                 onClick={handleNext}
                 disabled={pagination.last}
-                className="px-2 sm-500:px-4 py-2 bg-teal-400 border-teal-400 border-2 text-gray-900 rounded-md hover:bg-teal-500 hover:border-teal-500  disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-800 transition-colors duration-300"
+                className="px-2 sm-500:px-4 py-2 bg-teal-400 border-teal-400 border-2 text-gray-900 rounded-md hover:bg-teal-500 hover:border-teal-500  disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-800 cursor-pointer disabled:cursor-not-allowed transition-colors duration-300"
             >
                 Siguiente
             </button>

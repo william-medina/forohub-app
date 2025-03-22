@@ -61,7 +61,7 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
                         id="content"
                         name="content"
                         rows={5}
-                        className="w-full p-3 mt-2 text-sm sm-500:text-base bg-gray-800 text-white border border-gray-800 rounded-md focus:outline-none"
+                        className="w-full p-3 mt-2 text-sm sm-500:text-base bg-gray-800 text-white border border-gray-800 rounded-md focus:outline-hidden"
                         placeholder="Escribe tu respuesta aquí..."
                         value={responseData.content}
                         onChange={(e) => setResponseData({...responseData, content: e.target.value})}

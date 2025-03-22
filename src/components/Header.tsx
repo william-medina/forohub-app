@@ -107,7 +107,7 @@ function Header({user} : HeaderProps) {
                                     
                                     <button
                                         onClick={logout}
-                                        className="pt-2 flex items-center gap-2 text-red-500 hover:text-red-700 duration-300"
+                                        className="pt-2 flex items-center gap-2 text-red-500 hover:text-red-700 duration-300 cursor-pointer"
                                     >
                                         <ArrowRightEndOnRectangleIcon className="w-5 h-5 rotate-180" />
                                         Cerrar sesión
@@ -137,7 +137,7 @@ function Header({user} : HeaderProps) {
                             Ver Perfil
                         </Link>
                         
-                        <button onClick={logout} className="hidden sm-500:flex px-3 sm-500:px-4 py-1.5 sm-500:py-2 border-2 border-red-500  text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300">
+                        <button onClick={logout} className="hidden sm-500:flex px-3 sm-500:px-4 py-1.5 sm-500:py-2 border-2 border-red-500  text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors cursor-pointer duration-300">
                              Cerrar sesión
                         </button>
                     </div>

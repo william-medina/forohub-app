@@ -151,9 +151,9 @@ function NotificationView() {
                                             {/* Botón para redirigir al tópico */}
                                            
                                             <button
-                                                className={`border-2 border-teal-400 hover:bg-teal-400 text-teal-400 hover:text-gray-900 
+                                                className={`border-2 border-teal-400 hover:bg-teal-400 text-teal-400 hover:text-gray-900
                                                     disabled:text-gray-500 disabled:border-gray-500 
-                                                    disabled:hover:bg-gray-800 disabled:cursor-not-allowed px-3 py-2 my-3 
+                                                    disabled:hover:bg-gray-800 cursor-pointer disabled:cursor-not-allowed px-3 py-2 my-3 
                                                     text-xs sm-500:text-sm rounded-lg duration-300`}
                                                 onClick={() => handleRedirectToTopic(notify.topicId || 0)}
                                                 disabled={!notify.topicId}

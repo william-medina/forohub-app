@@ -19,14 +19,14 @@ function TopicCard({ topic }: TopicCardProps) {
                 <Link to={`/topic/${topic.id}`}>
                     <h3 className="text-lg sm-500:text-xl leading-5 sm-500:leading-7 font-semibold text-white hover:text-teal-400 transition-colors duration-300">{topic.title}</h3>
                 </Link>
-                <CheckCircleIcon className={`w-5 sm-500:w-6 ml-2 ${iconColor} flex-shrink-0`} />
+                <CheckCircleIcon className={`w-5 sm-500:w-6 ml-2 ${iconColor} shrink-0`} />
             </div>
         
             <div className="border-b-2 border-gray-600 my-2"></div>
         
             <div className="flex justify-between text-xs sm-500:text-sm">
                 <div className="flex flex-col text-gray-400 space-y-2">
-                    <span className="inline-block text-teal-300 bg-gray-700 px-2 py-1 rounded w-fit">
+                    <span className="inline-block text-teal-300 bg-gray-700 px-2 py-1 rounded-sm w-fit">
                         {topic.category}
                     </span>
                     <p className="font-medium text-gray-300 ml-1">{responsesText}</p>

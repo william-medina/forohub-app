@@ -93,7 +93,7 @@ function CreateTopicView() {
                             value={topicData.title}
                             onChange={handleChange}
                             placeholder="Escribe el título del tópico"
-                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
+                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-teal-400"
                         />
                     </div>
 
@@ -106,7 +106,7 @@ function CreateTopicView() {
                             onChange={handleChange}
                             placeholder="Escribe una breve descripción del tópico"
                             rows={4}
-                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
+                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-teal-400"
                         ></textarea>
                     </div>
 
@@ -117,7 +117,7 @@ function CreateTopicView() {
                             name="courseId"
                             value={topicData.courseId || ""}
                             onChange={handleChange}
-                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
+                            className="w-full p-3 bg-gray-900 text-gray-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-teal-400"
                         >
                             <option value="">Selecciona el curso</option>
                             {courses &&
@@ -132,7 +132,7 @@ function CreateTopicView() {
                     {/* Botón */}
                     <button
                         type="submit"
-                        className={`${isPending ? 'cursor-wait border-gray-600 text-gray-600 hover:bg-gray-800 hover:text-gray-600' : 'cursor-pointer border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-gray-900'} w-full py-3 border-2 font-semibold rounded-md focus:outline-none shadow-lg transition-all duration-300`}
+                        className={`${isPending ? 'cursor-wait border-gray-600 text-gray-600 hover:bg-gray-800 hover:text-gray-600' : 'cursor-pointer border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-gray-900'} w-full py-3 border-2 font-semibold rounded-md focus:outline-hidden shadow-lg transition-all duration-300`}
                         disabled={isPending}
                     >
                         Crear Tópico

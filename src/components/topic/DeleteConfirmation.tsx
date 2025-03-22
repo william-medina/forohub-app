@@ -29,7 +29,7 @@ function DeleteConfirmation({
                 <button
                     type="button"
                     onClick={toggleIsDeleting}
-                    className="border-red-500 border-2 text-red-500 hover:bg-red-500 hover:text-white px-4 sm-500:px-5 py-2 rounded-lg text-xs sm-500:text-sm font-medium transition-colors duration-300"
+                    className="border-red-500 border-2 text-red-500 hover:bg-red-500 hover:text-white px-4 sm-500:px-5 py-2 rounded-lg text-xs sm-500:text-sm font-medium cursor-pointer transition-colors duration-300"
                     disabled={isDeletePending}
                 >
                     Cancelar

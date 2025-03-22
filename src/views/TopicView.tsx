@@ -165,7 +165,7 @@ function TopicView() {
                         <div className="flex-1">
                             {/* Estado del tópico */}
                             {topic.status === "CLOSED" && (
-                                <div className="flex items-center gap-1 border-teal-400 border-2 px-3 py-2 mb-4 rounded w-fit">
+                                <div className="flex items-center gap-1 border-teal-400 border-2 px-3 py-2 mb-4 rounded-sm w-fit">
                                     <CheckCircleIcon className="w-4 sm-500:w-5 text-teal-400" title="Tópico marcado como solucionado" />
                                     <p className="text-teal-400 font-bold text-sm sm-500:text-base">Solucionado</p>
                                 </div>
@@ -177,7 +177,7 @@ function TopicView() {
                                     id="title"
                                     name="title"
                                     rows={rowsTitle}
-                                    className="w-full p-3 bg-gray-900 leading-6 text-[1.25rem] sm-500:text-[1.5rem] font-bold placeholder:font-normal placeholder:text-sm sm-500:placeholder:text-base placeholder:leading-4 sm-500:placeholder:leading-5 text-teal-400 rounded-md focus:outline-none"
+                                    className="w-full p-3 bg-gray-900 leading-6 text-[1.25rem] sm-500:text-[1.5rem] font-bold placeholder:font-normal placeholder:text-sm sm-500:placeholder:text-base placeholder:leading-4 sm-500:placeholder:leading-5 text-teal-400 rounded-md focus:outline-hidden"
                                     placeholder="Escribe tu título actualizado aquí..."
                                     value={topicData.title}
                                     onChange={handleChange}
@@ -213,7 +213,7 @@ function TopicView() {
                     </div>
 
                     {/* Categoría del curso */}
-                    <span className="inline-block text-teal-300 bg-gray-700 px-2 py-1 text-xs sm-500:text-sm rounded w-fit">
+                    <span className="inline-block text-teal-300 bg-gray-700 px-2 py-1 text-xs sm-500:text-sm rounded-sm w-fit">
                         {topic.course.category}
                     </span>
 
@@ -234,7 +234,7 @@ function TopicView() {
                             id="description"
                             name="description"
                             rows={rowsDescription}
-                            className="w-full mt-4 mb-3 p-3 text-sm sm-500:text-base bg-gray-900 text-gray-100 leading-4 sm-500:leading-5 rounded-md focus:outline-none"
+                            className="w-full mt-4 mb-3 p-3 text-sm sm-500:text-base bg-gray-900 text-gray-100 leading-4 sm-500:leading-5 rounded-md focus:outline-hidden"
                             placeholder="Escribe tu descripción actualizada aquí..."
                             value={topicData.description}
                             onChange={handleChange}
@@ -255,7 +255,7 @@ function TopicView() {
                                 name="courseId"
                                 value={topicData.courseId ?? ""}
                                 onChange={handleChange}
-                                className="w-full p-[0.4rem] ml-2 text-gray-100 bg-gray-900 rounded-md shadow-md outline-none"
+                                className="w-full p-[0.4rem] ml-2 text-gray-100 bg-gray-900 rounded-md shadow-md outline-hidden"
                             >
                                 {courses?.map((course) => (
                                     <option key={course.id} value={course.id}>

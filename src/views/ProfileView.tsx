@@ -81,7 +81,7 @@ function ProfileView() {
             <div className="flex space-x-3 sm-500:space-x-4 mb-2 sm-500:mb-3 leading-4 text-sm sm-500:text-base">
                 <button
                     onClick={() => setSelectedTopicType('created')}
-                    className={`py-2 px-3 sm-500:px-4 rounded-lg ${
+                    className={`py-2 px-3 sm-500:px-4 rounded-lg cursor-pointer ${
                         selectedTopicType === 'created' ? 'bg-teal-400 text-gray-900' : 'bg-gray-700 text-gray-300'
                     }`}
                 >
@@ -89,7 +89,7 @@ function ProfileView() {
                 </button>
                 <button
                     onClick={() => setSelectedTopicType('followed')}
-                    className={`py-2 px-3 sm-500:px-4 rounded-lg ${
+                    className={`py-2 px-3 sm-500:px-4 rounded-lg cursor-pointer ${
                         selectedTopicType === 'followed' ? 'bg-teal-400 text-gray-900' : 'bg-gray-700 text-gray-300'
                     }`}
                 >
@@ -118,7 +118,7 @@ function ProfileView() {
                         value={searchKeyword}
                         onChange={(e) => setSearchKeyword(e.target.value)}
                         placeholder="Buscar..."
-                        className="text-sm sm-500:text-base p-2 rounded-lg bg-gray-900 text-white outline-none  focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
+                        className="text-sm sm-500:text-base p-2 rounded-lg bg-gray-900 text-white outline-hidden  focus:border-teal-500 focus:ring-2 focus:ring-teal-500"
                     />
                 </div>
                 
