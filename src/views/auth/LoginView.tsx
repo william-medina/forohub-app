@@ -10,7 +10,7 @@ import { FormMessageStatus } from "../../components/FormStatusMessage";
 function LoginView() {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const { lastVisitedURL } = useAuthStore();
+    const { lastVisitedURL, setIsAuthenticated } = useAuthStore();
 
     const [errorMessage, setErrorMessage] = useState<FormMessageStatus | null>(null);
     const [formData, setFormData] = useState<UserLoginForm>({
@@ -28,6 +28,8 @@ function LoginView() {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {
+            localStorage.setItem("isAuthenticated", "true");
+            setIsAuthenticated(true);
             queryClient.resetQueries({ queryKey: ["currentUser"] });
             setErrorMessage(null);
             setFormData({ username: "", password: "" });

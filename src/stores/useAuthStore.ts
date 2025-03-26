@@ -6,10 +6,12 @@ import { Notify } from "../types/notifyTypes"
 
 type AuthStore = {
     userData: UserData | undefined
+    isAuthenticated: boolean
     lastVisitedURL: string
     notifications: Notify[]
     isloadingNotify: boolean,
 
+    setIsAuthenticated: (value: boolean) => void
     setLastVisitedURL: (value: string) => void
     setNotifications: (value: Notify[]) => void
     setIsLoadingNotify: (value: boolean) => void
@@ -19,30 +21,23 @@ type AuthStore = {
     
 }
 
-const initialData: UserData | undefined = {
-    id: 0,
-    username: '',
-    profile: 'USER',
-}
-
 export const useAuthStore = create<AuthStore>()(
     devtools(
         (set) => ({
-            userData: initialData,
-
+            userData: undefined,
+            isAuthenticated: localStorage.getItem("isAuthenticated") === "true",
             lastVisitedURL: '/',
-
             notifications: [],
-
             isloadingNotify: true,
 
+            setIsAuthenticated: (value) => set({isAuthenticated: value}),
             setLastVisitedURL: (value) => set({lastVisitedURL: value}),
             setNotifications: (value) => set({ notifications: value }),
             setIsLoadingNotify: (value) => set({ isloadingNotify: value }),
-            setData: (value: UserData | undefined) => set({ userData: value }),
+            setData: (value: UserData | undefined) => set({ userData: value}) ,
             resetData: () => {
-                set({ userData: initialData });
-                set({ lastVisitedURL: '/'});
+                localStorage.removeItem("isAuthenticated");
+                set({ userData: undefined, lastVisitedURL: '/', isAuthenticated: false });
             },
             setUsername: (value) =>
                 set((state) => ({

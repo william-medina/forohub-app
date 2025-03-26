@@ -1,5 +1,5 @@
 import api from "../config/axios";
-import { Token, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UpdateCurrentUserPasswordForm, userDataSchema, UserLoginForm, UsernameForm, UserRegistrationForm, tokenSchema, userDataWithTokenSchema, userStatsSchema } from "../types/userTypes";
+import { Token, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UpdateCurrentUserPasswordForm, userDataSchema, UserLoginForm, UsernameForm, UserRegistrationForm, tokenSchema, userStatsSchema } from "../types/userTypes";
 import { handleAxiosError } from "../utils";
 
 
@@ -83,9 +83,8 @@ export async function updateUsername(usernameForm: UsernameForm) {
     try {
         const url = '/auth/update-username'
         const { data } = await api.patch(url, usernameForm)
-        const response = userDataWithTokenSchema.safeParse(data);
+        const response = userDataSchema.safeParse(data);
         if(response.success) {
-            localStorage.setItem('AUTH_TOKEN', response.data.token);
             return response.data;
         }
     } catch (error) {
@@ -113,6 +112,15 @@ export async function getCurrentUser() {
         if(response.success) {
             return response.data;
         }
+    } catch (error) {
+        handleAxiosError(error);
+    }
+}
+
+export async function logoutUser() {
+    try {
+        const { data } = await api.post('/auth/logout');
+        return data;
     } catch (error) {
         handleAxiosError(error);
     }

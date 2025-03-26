@@ -12,7 +12,7 @@ import { useAuthErrorHandler } from "../hooks/useAuthErrorHandler";
 function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
 
     const { pathname } = useLocation();
-    const { setData, userData } = useAuthStore();
+    const { setData, userData, isAuthenticated } = useAuthStore();
     const { handleAuthError } = useAuthErrorHandler();
 
     const { data: user, isLoading, error } = useQuery({
@@ -20,7 +20,9 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
         queryFn: getCurrentUser,
         retry: false, 
         refetchOnWindowFocus: false,
+        enabled: isAuthenticated || isPrivate
     });
+
 
     const [showConnectingMessage, setShowConnectingMessage] = useState(false);
     
@@ -41,19 +43,16 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
     }, [user])
 
     useEffect(() => {
-    
-        if (error) {
-            let isUnauthorized = false;
-            isUnauthorized = isPrivate ? 
-                ( error?.message === "Unauthorized" || !localStorage.getItem("AUTH_TOKEN") ) : error?.message === "Unauthorized" 
-            if (isUnauthorized) {
-                const message = error?.message === "Unauthorized"
-                    ? 'Sesión expirada o permisos insuficientes. Inicia sesión nuevamente.'
-                    : 'Inicia sesión para continuar.';
-    
-                handleAuthError(pathname, message);
-            }
+
+        if(!error) return
+
+        const isUnauthorized = isPrivate 
+            ? (error?.message === "Unauthorized" || !isAuthenticated) 
+            : (error?.message === "Unauthorized" && isAuthenticated)
+        if (isUnauthorized) {
+            handleAuthError(pathname, "Sesión expirado o no tienes permisos. Inicia sesión para continuar.");
         }
+     
     }, [error]);
 
     return (

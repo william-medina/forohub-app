@@ -1,10 +1,12 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../types/userTypes";
 import { useAuthStore } from "../stores/useAuthStore";
 import { ArrowRightEndOnRectangleIcon, Bars3Icon, BellIcon, LockClosedIcon, PencilSquareIcon, UserCircleIcon } from "@heroicons/react/16/solid";
 import { useEffect, useState } from "react";
 import { getAllNotificationsByUser } from "../api/NotifyAPI";
+import { logoutUser } from "../api/AuthAPI";
+import { toast } from "react-toastify";
 
 type HeaderProps = {
     user: UserData | undefined
@@ -13,24 +15,31 @@ type HeaderProps = {
 function Header({user} : HeaderProps) {
 
     const navigate = useNavigate();
-    const queryClient = useQueryClient();
-    const { resetData, userData, setNotifications, setIsLoadingNotify } = useAuthStore();
+    const { resetData, userData, setNotifications, setIsLoadingNotify, isAuthenticated } = useAuthStore();
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleMenuToggle = () => setMenuOpen(true);
     const handleMenuClose = () => setMenuOpen(false);
 
+    const { mutate, isPending } = useMutation({
+        mutationFn: logoutUser,
+        onError: (error) => {
+            toast.error(error.message || 'Error inesperado. Intenta nuevamente.');
+        },
+        onSuccess: () => {
+            resetData();
+            navigate('/login');
+        },
+    });
+
     const logout = () => {
-        localStorage.removeItem('AUTH_TOKEN');
-        queryClient.resetQueries({ queryKey: ['currentUser'] });
-        resetData();
-        navigate('/login');
+        mutate();
     };
 
     const { data, isLoading } = useQuery({
         queryKey: ["notifications"],
         queryFn: getAllNotificationsByUser,
-        enabled: userData !== null && userData !== undefined,
+        enabled: userData !== undefined && isAuthenticated,
         refetchInterval: 30000,
     });
 
@@ -57,7 +66,7 @@ function Header({user} : HeaderProps) {
                 </Link>
               
 
-                {localStorage.getItem('AUTH_TOKEN') ? (
+                {isAuthenticated ? (
                     <div className="gap-3 sm-500:gap-4 text-sm sm-500:text-base text-center flex">
                      
                         <button
@@ -106,8 +115,9 @@ function Header({user} : HeaderProps) {
                                     </Link>
                                     
                                     <button
+                                        disabled={isPending}
                                         onClick={logout}
-                                        className="pt-2 flex items-center gap-2 text-red-500 hover:text-red-700 duration-300 cursor-pointer"
+                                        className={`${isPending ? 'cursor-wait' : 'cursor-pointer'} pt-2 flex items-center gap-2 text-red-500 hover:text-red-700 duration-300`}
                                     >
                                         <ArrowRightEndOnRectangleIcon className="w-5 h-5 rotate-180" />
                                         Cerrar sesión
@@ -137,7 +147,11 @@ function Header({user} : HeaderProps) {
                             Ver Perfil
                         </Link>
                         
-                        <button onClick={logout} className="hidden sm-500:flex px-3 sm-500:px-4 py-1.5 sm-500:py-2 border-2 border-red-500  text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors cursor-pointer duration-300">
+                        <button 
+                            onClick={logout} 
+                            disabled={isPending} 
+                            className={`${isPending ? 'cursor-wait' : 'cursor-pointer'} hidden sm-500:flex px-3 sm-500:px-4 py-1.5 sm-500:py-2 border-2 border-red-500  text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300`}
+                        >
                              Cerrar sesión
                         </button>
                     </div>

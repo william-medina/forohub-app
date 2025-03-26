@@ -7,7 +7,6 @@ export const useAuthErrorHandler = () => {
     const { resetData, setLastVisitedURL } = useAuthStore();
 
     const handleAuthError = (pathname: string, message?: string) => {
-        localStorage.removeItem("AUTH_TOKEN");
         resetData();
         setLastVisitedURL(pathname);
         toast.error(message || 'Sesión expirada o permisos insuficientes. Inicia sesión nuevamente.');
