@@ -4,6 +4,7 @@ export const profileSchema = z.enum(['ADMIN', 'INSTRUCTOR', 'MODERATOR', 'USER']
 export type Profile = z.infer<typeof profileSchema>
 
 export const authorSchema = z.object({
+    id: z.number(),
     username: z.string(),
     profile: profileSchema    
 })

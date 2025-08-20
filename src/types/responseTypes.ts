@@ -4,6 +4,7 @@ import { authorSchema } from '.';
 
 export const responseSchema = z.object({
     id: z.number(),
+    topicId: z.number(),
     content: z.string(),
     author: authorSchema,
     solution: z.boolean(),
