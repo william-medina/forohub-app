@@ -1,4 +1,5 @@
 import api from "../config/axios";
+import { useAuthStore } from "../stores/useAuthStore";
 import { Token, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UpdateCurrentUserPasswordForm, userDataSchema, UserLoginForm, UsernameForm, UserRegistrationForm, tokenSchema, userStatsSchema } from "../types/userTypes";
 import { handleAxiosError } from "../utils";
 
@@ -20,7 +21,7 @@ export async function authenticateUser(formData: UserLoginForm) {
         const { data } = await api.post(url, formData)
         const response = tokenSchema.safeParse(data);
             if(response.success) {
-                localStorage.setItem('AUTH_TOKEN', response.data.token);
+                useAuthStore.getState().setAccessToken(response.data.accessToken);
                 return response.data;
             }
         return data;
@@ -29,7 +30,7 @@ export async function authenticateUser(formData: UserLoginForm) {
     }
 }
 
-export async function confirmAccount(token: Token['token']) {
+export async function confirmAccount(token: Token['accessToken']) {
     try {
         const url = `/auth/confirm-account/${token}`
         const { data } = await api.get(url)
@@ -59,7 +60,7 @@ export async function forgotPassword(formData: ForgotPasswordForm) {
     }
 }
 
-export async function updatePasswordWithToken({formData, token}: {formData: NewPasswordForm, token: Token['token']}) {
+export async function updatePasswordWithToken({formData, token}: {formData: NewPasswordForm, token: Token['accessToken']}) {
     try {
         const url = `/auth/update-password/${token}`
         const { data } = await api.post(url, formData)
@@ -120,6 +121,9 @@ export async function getCurrentUser() {
 export async function logoutUser() {
     try {
         const { data } = await api.post('/auth/logout');
+
+        useAuthStore.getState().setAccessToken(null);
+        
         return data;
     } catch (error) {
         handleAxiosError(error);

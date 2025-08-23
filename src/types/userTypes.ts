@@ -8,7 +8,7 @@ export const userSchema = z.object({
     password: z.string(),
     password_confirmation: z.string(),
     current_password: z.string(),
-    token: z.string(),
+    accessToken: z.string(),
     profile: profileSchema,
     topicsCount: z.number(),
     responsesCount: z.number(),
@@ -27,7 +27,7 @@ export const userStatsSchema = userSchema.pick({
     followedTopicsCount: true
 })
 
-export const tokenSchema = z.object({token: z.string()});
+export const tokenSchema = z.object({accessToken: z.string()});
 
 type User = z.infer<typeof userSchema>
 export type UserData = z.infer<typeof userDataSchema>
@@ -38,5 +38,5 @@ export type RequestConfirmationCodeForm = Pick<User, 'email'>
 export type ForgotPasswordForm = Pick<User, 'email'>
 export type NewPasswordForm = Pick<User, 'password' | 'password_confirmation'>
 export type UpdateCurrentUserPasswordForm = Pick<User, 'current_password' | 'password' | 'password_confirmation'>
-export type Token = Pick<User, 'token'>
+export type Token = Pick<User, 'accessToken'>
 export type UsernameForm = Pick<User, 'username'>
