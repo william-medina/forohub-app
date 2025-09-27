@@ -7,7 +7,7 @@ export const formatRelativeDate = (date: Date): string => {
     return formatDistanceToNow(date, { addSuffix: true, locale: es }).replace('alrededor de ', '');
 }
 
-export const formatResponsesCount = (count: number): string => {
+export const formatRepliesCount = (count: number): string => {
     return `${count} ${count === 1 ? 'respuesta' : 'respuestas'}`;
 }
 

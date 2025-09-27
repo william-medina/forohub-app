@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { deleteResponse, setCorrectResponse, updateResponse } from "../api/ResponseAPI";
+import { deleteReply, setCorrectReply, updateReply } from "../api/ReplyAPI";
 import { useLocation } from "react-router-dom";
 import { ActionState } from "../types";
 import { Dispatch } from "react";
 import { FormMessageStatus } from "../components/FormStatusMessage";
 import { useAuthErrorHandler } from "./useAuthErrorHandler";
 
-export const useResponseMutations = (
+export const useReplyMutations = (
     topicId: number, 
     updateActionState: (key: keyof ActionState, value: boolean) => void,
     setErrorMessage: Dispatch<React.SetStateAction<FormMessageStatus>>
@@ -35,7 +35,7 @@ export const useResponseMutations = (
     };
 
     const mutateSolution = useMutation({
-        mutationFn: setCorrectResponse,
+        mutationFn: setCorrectReply,
         onError: (error) => handleError(error, true),
         onSuccess: () => {
             toast.success("Solución cambiada!");
@@ -44,7 +44,7 @@ export const useResponseMutations = (
     });
 
     const mutateUpdate = useMutation({
-        mutationFn: updateResponse,
+        mutationFn: updateReply,
         onError: (error) => handleError(error, false),
         onSuccess: () => {
             toast.success("Respuesta actualizada!");
@@ -55,7 +55,7 @@ export const useResponseMutations = (
     });
 
     const mutateDelete = useMutation({
-        mutationFn: deleteResponse,
+        mutationFn: deleteReply,
         onError: (error) => handleError(error, true),
         onSuccess: () => {
             toast.success("Respuesta eliminada!");

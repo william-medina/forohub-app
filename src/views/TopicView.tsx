@@ -3,9 +3,9 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { getTopicById } from "../api/TopicAPI";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/react/16/solid";
 import { formatRelativeDate } from "../utils";
-import AddResponseForm from "../components/topic/AddResponseForm";
+import AddReplyForm from "../components/topic/AddReplyForm";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import ResponseCard from "../components/topic/ResponseCard";
+import ReplyCard from "../components/topic/ReplyCard";
 import { useAuthStore } from "../stores/useAuthStore";
 import FormStatusMessage, { FormMessageStatus } from "../components/FormStatusMessage";
 import { TopicForm } from "../types/topicTypes";
@@ -284,16 +284,16 @@ function TopicView() {
 
                 {/* Respuestas */}
                 <section className="space-y-4">
-                    <h2 className="text-lg sm-500:text-xl font-semibold text-teal-400">Respuestas ({topic.responses.length})</h2>
-                    {topic.responses.map(response => (
-                        <ResponseCard response={response} topicId={parseInt(topicId!)} key={response.id} />
+                    <h2 className="text-lg sm-500:text-xl font-semibold text-teal-400">Respuestas ({topic.replies.length})</h2>
+                    {topic.replies.map(response => (
+                        <ReplyCard reply={response} topicId={parseInt(topicId!)} key={response.id} />
                     ))}
                 </section>
             </div>
 
             {/* Formulario para agregar una nueva respuesta */}
             {userData ? (
-                <AddResponseForm topicId={parseInt(topicId!)} />
+                <AddReplyForm topicId={parseInt(topicId!)} />
             ) : (
                 <div className="p-4 text-gray-100 rounded-lg text-center mt-10">
                     <p className="text-sm sm-500:text-base">

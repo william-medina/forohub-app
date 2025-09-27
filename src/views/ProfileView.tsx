@@ -8,7 +8,7 @@ import { usePagination } from '../hooks/usePagination';
 import Pagination from '../components/Pagination';
 import { PaginationInfo } from '../types';
 import LoadingError from '../components/LoadingError';
-import { formatResponsesCount } from '../utils';
+import { formatRepliesCount } from '../utils';
 import { getUserStats } from '../api/AuthAPI';
 import { InformationCircleIcon } from '@heroicons/react/20/solid';
 
@@ -66,7 +66,7 @@ function ProfileView() {
                 </div>
                 <div className="bg-gray-800 rounded-lg p-3 sm-500:p-4 text-center flex flex-col justify-between">
                     <h3 className="leading-5 text-base sm-500:text-[1.125rem] font-semibold text-teal-400">Respuestas Realizadas</h3>
-                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.responsesCount || 0}</p>
+                    <p className="text-3xl sm-500:text-4xl font-bold mt-2">{stats?.repliesCount || 0}</p>
                 </div>
                 <div className="bg-gray-800 rounded-lg p-3 sm-500:p-4 text-center flex flex-col justify-between">
                     <h3 className="leading-5 text-base sm-500:text-[1.125rem] font-semibold text-teal-400">Tópicos Siguiendo</h3>
@@ -147,7 +147,7 @@ function ProfileView() {
                                             />
                                         </div>
                                     </div>
-                                    <p className="text-xs sm-500:text-sm text-gray-400">{formatResponsesCount(topic.responsesCount)}</p>
+                                    <p className="text-xs sm-500:text-sm text-gray-400">{formatRepliesCount(topic.repliesCount)}</p>
                                 </div>
                             ))}
                         </div>

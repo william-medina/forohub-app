@@ -1,6 +1,6 @@
 import { CheckCircleIcon } from "@heroicons/react/16/solid"
 import { Topic } from "../../types/topicTypes"
-import { formatRelativeDate, formatResponsesCount } from "../../utils"
+import { formatRelativeDate, formatRepliesCount } from "../../utils"
 import { Link } from "react-router-dom"
 
 type TopicCardProps = {
@@ -11,7 +11,7 @@ function TopicCard({ topic }: TopicCardProps) {
     const isActive = topic.status === 'ACTIVE'
     const iconColor = isActive ? 'text-gray-500' : 'text-teal-300' 
     const relativeDate = formatRelativeDate(new Date(topic.createdAt))
-    const responsesText = formatResponsesCount(topic.responsesCount)
+    const replyText = formatRepliesCount(topic.repliesCount)
 
     return (
         <div className="bg-gray-800 p-5 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col space-y-4">
@@ -29,7 +29,7 @@ function TopicCard({ topic }: TopicCardProps) {
                     <span className="inline-block text-teal-300 bg-gray-700 px-2 py-1 rounded-sm w-fit">
                         {topic.category}
                     </span>
-                    <p className="font-medium text-gray-300 ml-1">{responsesText}</p>
+                    <p className="font-medium text-gray-300 ml-1">{replyText}</p>
                 </div>
                 <div className="flex flex-col text-right justify-end text-gray-400">
                     <p className="text-gray-400 text-end">{topic.author}</p>

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { responsesListSchema } from './responseTypes';
+import { repliesListSchema } from './replyTypes';
 import { authorSchema, paginationInfoSchema } from '.';
 
 export const statusSchema = z.enum(['ACTIVE', 'CLOSED']);
@@ -31,7 +31,7 @@ export const topicSchema = z.object({
     author: z.string(),
     course: z.string(),
     category: z.string(),
-    responsesCount: z.number(),
+    repliesCount: z.number(),
     status: statusSchema,
     createdAt: z.string(),
     updateAt: z.string()
@@ -47,7 +47,7 @@ export const topicDetailsSchema = topicSchema.pick({
 }).extend({
     course: courseSchema,
     author: authorSchema,
-    responses: responsesListSchema, 
+    replies: repliesListSchema, 
 	followers: z.array(followersSchema)
 });
 
@@ -61,7 +61,7 @@ export const topicListSchema = z.array(topicSchema);
 export const followListSchema = z.array(followSchema);
 
 export const topicListPageSchema = paginationInfoSchema.extend({
-  content: topicListSchema
+    content: topicListSchema
 });
 
 export const topicFollowListPageSchema = paginationInfoSchema.extend({

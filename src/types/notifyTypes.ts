@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const notifyTypeSchema = z.enum(["TOPIC", "RESPONSE"]);
+export const notifyTypeSchema = z.enum(["TOPIC", "REPLY"]);
 export const notifySubtypeSchema = z.enum(["REPLY", "EDITED", "SOLVED", "DELETED"]);
 
 export type NotifyType = z.infer<typeof notifyTypeSchema>

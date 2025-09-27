@@ -11,7 +11,7 @@ export const userSchema = z.object({
     accessToken: z.string(),
     profile: profileSchema,
     topicsCount: z.number(),
-    responsesCount: z.number(),
+    repliesCount: z.number(),
     followedTopicsCount: z.number()  
 })
 
@@ -23,7 +23,7 @@ export const userDataSchema = userSchema.pick({
 
 export const userStatsSchema = userSchema.pick({
     topicsCount: true,
-    responsesCount: true,
+    repliesCount: true,
     followedTopicsCount: true
 })
 

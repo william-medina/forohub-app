@@ -1,22 +1,22 @@
 import { CheckCircleIcon } from "@heroicons/react/16/solid"
 import { formatRelativeDate } from "../../utils"
-import { Response } from "../../types/responseTypes"
+import { Reply } from "../../types/replyTypes"
 import { useAuthStore } from "../../stores/useAuthStore"
 import { useEffect, useRef, useState } from "react"
 import { Topic } from "../../types/topicTypes"
 import FormStatusMessage, { FormMessageStatus } from "../FormStatusMessage"
-import { useResponseMutations } from "../../hooks/useResponseMutations"
+import { useReplyMutations } from "../../hooks/useReplyMutations"
 import { ActionState } from "../../types"
 import ActionButtons from "./ActionButtons"
 import DeleteConfirmation from "./DeleteConfirmation"
 import AuthorInfo from "./AuthorInfo"
 
-type ResponseCardProps = {
-    response: Response
+type ReplyCardProps = {
+    reply: Reply
     topicId: Topic['id']
 }
 
-function ResponseCard({response, topicId} : ResponseCardProps) {
+function ReplyCard({reply, topicId} : ReplyCardProps) {
 
     const [actionStates, setActionStates] = useState<ActionState>({
         isAuthor: false,
@@ -30,11 +30,11 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
         setActionStates(prevState => ({ ...prevState, [key]: value }));
     };
 
-    const [content, setContent] = useState(response.content);
+    const [content, setContent] = useState(reply.content);
     const [errorMessage, setErrorMessage] = useState<FormMessageStatus | null>(null);
 
     const { userData, } = useAuthStore();
-    const { mutateSolution, mutateUpdate, mutateDelete } = useResponseMutations(topicId, updateActionState, setErrorMessage);
+    const { mutateSolution, mutateUpdate, mutateDelete } = useReplyMutations(topicId, updateActionState, setErrorMessage);
     
     const [rows, setRows] = useState(4);
     const divRef = useRef<HTMLDivElement | null>(null);
@@ -49,26 +49,26 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
 
     useEffect(() => {
         if(userData) {
-            updateActionState('isAuthor', response.author.username === userData.username);
+            updateActionState('isAuthor', reply.author.username === userData.username);
             updateActionState('isStaffRole', userData.profile !== "USER");
         }
     }, [userData])
 
 
-    const handleSolutionClick = () => mutateSolution.mutate(response.id);
+    const handleSolutionClick = () => mutateSolution.mutate(reply.id);
     const toggleIsEditing = () => { 
         updateActionState('isEditing', !actionStates.isEditing); 
-        setContent(response.content);
+        setContent(reply.content);
         setErrorMessage(null);
     }
-    const handleUpdateClick = () => mutateUpdate.mutate({ responseId: response.id, formData: {content} });
+    const handleUpdateClick = () => mutateUpdate.mutate({ replyId: reply.id, formData: {content} });
     const toggleIsDeleting = () => updateActionState('isDeleting',!actionStates.isDeleting);
-    const handleDeleteClick = () => mutateDelete.mutate(response.id);
+    const handleDeleteClick = () => mutateDelete.mutate(reply.id);
 
     return (
         <div
             className={`p-5 rounded-lg shadow-md space-y-5 ${
-                actionStates.isDeleting ? "bg-red-900" : (response.solution ? "bg-teal-900" : "bg-gray-800")}
+                actionStates.isDeleting ? "bg-red-900" : (reply.solution ? "bg-teal-900" : "bg-gray-800")}
             }`}
         >
             <div className="flex flex-col items-start">
@@ -76,7 +76,7 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
 
                     { /* Verifica si la respuesta está marcada como solución y muestra el icono correspondiente */ }
                     <div>
-                        {response.solution &&(
+                        {reply.solution &&(
                             <div className="flex items-center text-teal-400 gap-1">
                                 <CheckCircleIcon className="w-4 sm-500:w-5" title="Respuesta marcada como solución" />
                                 <p className="font-bold text-base sm-500:text-lg">Solución</p>
@@ -84,7 +84,7 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
                         )}
                         <div className="text-xs sm-500:text-sm text-gray-400">
                             <span>Publicado </span>
-                            {formatRelativeDate(new Date(response.createdAt))}, el {new Date(response.createdAt).toLocaleDateString("es-ES")}
+                            {formatRelativeDate(new Date(reply.createdAt))}, el {new Date(reply.createdAt).toLocaleDateString("es-ES")}
                         </div> 
                     </div>
 
@@ -98,7 +98,7 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
                             toggleIsEditing={toggleIsEditing}
                             toggleIsDeleting={toggleIsDeleting}
                             isSolutionPending={mutateSolution.isPending}
-                            isSolution={response.solution}
+                            isSolution={reply.solution}
                             handleSolutionClick={handleSolutionClick}
                         />
                     )}
@@ -122,7 +122,7 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
                         <FormStatusMessage formStatus={errorMessage}/>
                     )}
                     <textarea
-                        id={`content-${response.id}`}
+                        id={`content-${reply.id}`}
                         name="content"
                         rows={rows}
                         className="w-full mt-2 p-3 text-sm sm-500:text-base bg-gray-900 text-gray-100 leading-4 sm-500:leading-5 rounded-md focus:outline-hidden"
@@ -140,12 +140,12 @@ function ResponseCard({response, topicId} : ResponseCardProps) {
             {/* Información del autor y fecha de la respuesta */}
             <AuthorInfo 
                 isAuthor={actionStates.isAuthor}
-                author={response.author}
-                updatedAt={response.updatedAt}
+                author={reply.author}
+                updatedAt={reply.updatedAt}
             />
             
         </div>
     )
 }
 
-export default ResponseCard
+export default ReplyCard

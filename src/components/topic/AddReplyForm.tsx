@@ -1,17 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addResponse } from "../../api/ResponseAPI";
+import { addReply } from "../../api/ReplyAPI";
 import FormStatusMessage, { FormMessageStatus } from "../FormStatusMessage";
 import { useState } from "react";
-import { CreateResponseForm } from "../../types/responseTypes";
+import { CreateReplyForm } from "../../types/replyTypes";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { useAuthErrorHandler } from "../../hooks/useAuthErrorHandler";
 
-type AddResponseFormProps = {
+type AddReplyFormProps = {
     topicId: number
 }
 
-function AddResponseForm({topicId} : AddResponseFormProps) {
+function AddReplyForm({topicId} : AddReplyFormProps) {
 
     const queryClient = useQueryClient();
     const [errorMessage, setErrorMessage] = useState<FormMessageStatus | null>(null);
@@ -19,15 +19,15 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
     const { pathname } = useLocation();
     const { handleAuthError } = useAuthErrorHandler();
 
-    const initialData: CreateResponseForm = {
+    const initialData: CreateReplyForm = {
         topicId,
         content: ""
     }
 
-    const [responseData, setResponseData] = useState<CreateResponseForm>(initialData);
+    const [replyData, setReplyData] = useState<CreateReplyForm>(initialData);
 
     const { mutate, isPending } = useMutation({
-        mutationFn: addResponse,
+        mutationFn: addReply,
         onError: (error) => {
             if(error.message === "Unauthorized") {
                 handleAuthError(pathname);
@@ -36,7 +36,7 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
             }
         },
         onSuccess: () => {
-            setResponseData(initialData);
+            setReplyData(initialData);
             setErrorMessage(null);
             toast.success('Respuesta agregada!');
             queryClient.fetchQuery({ queryKey: ["topic", topicId.toString()] });
@@ -45,7 +45,7 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        mutate(responseData)
+        mutate(replyData)
     };
 
     return (
@@ -63,8 +63,8 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
                         rows={5}
                         className="w-full p-3 mt-2 text-sm sm-500:text-base bg-gray-800 text-white border border-gray-800 rounded-md focus:outline-hidden"
                         placeholder="Escribe tu respuesta aquí..."
-                        value={responseData.content}
-                        onChange={(e) => setResponseData({...responseData, content: e.target.value})}
+                        value={replyData.content}
+                        onChange={(e) => setReplyData({...replyData, content: e.target.value})}
                     ></textarea>
                 </div>
 
@@ -82,4 +82,4 @@ function AddResponseForm({topicId} : AddResponseFormProps) {
     )
 }
 
-export default AddResponseForm
+export default AddReplyForm
