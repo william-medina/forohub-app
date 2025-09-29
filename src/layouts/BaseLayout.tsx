@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthStore } from "../stores/useAuthStore";
 import { useAuthErrorHandler } from "../hooks/useAuthErrorHandler";
+import { UserData } from "../types/userTypes";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
 
 
 function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
@@ -15,7 +17,7 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
     const { setData, userData, isAuthenticated } = useAuthStore();
     const { handleAuthError } = useAuthErrorHandler();
 
-    const { data: user, isLoading, error } = useQuery({
+    const { data: user, isLoading, error } = useQuery<UserData | undefined, ApiErrorResponse>({
         queryKey: ["currentUser"],
         queryFn: getCurrentUser,
         retry: false, 
@@ -47,8 +49,8 @@ function BaseLayout({ isPrivate }: { isPrivate: boolean }) {
         if(!error) return
 
         const isUnauthorized = isPrivate 
-            ? (error?.message === "Unauthorized" || !isAuthenticated) 
-            : (error?.message === "Unauthorized" && isAuthenticated)
+            ? (error?.status === 401 || !isAuthenticated) 
+            : (error?.status === 401 && isAuthenticated)
         if (isUnauthorized) {
             handleAuthError(pathname, "Sesión expirado o no tienes permisos. Inicia sesión para continuar.");
         }

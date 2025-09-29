@@ -6,6 +6,7 @@ import { authenticateUser } from "../../api/AuthAPI";
 import { useAuthStore } from "../../stores/useAuthStore";
 import FormWrapper from "../../components/FormWrapper";
 import { FormMessageStatus } from "../../components/FormStatusMessage";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 function LoginView() {
     const queryClient = useQueryClient();
@@ -24,11 +25,10 @@ function LoginView() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: authenticateUser,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {
-            localStorage.setItem("isAuthenticated", "true");
             setIsAuthenticated(true);
             queryClient.resetQueries({ queryKey: ["currentUser"] });
             setErrorMessage(null);

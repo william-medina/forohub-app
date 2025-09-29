@@ -6,6 +6,7 @@ import { Dispatch } from "react";
 import { FormMessageStatus } from "../components/FormStatusMessage";
 import { deleteTopic, toggleFollowTopic, updateTopic } from "../api/TopicAPI";
 import { useAuthErrorHandler } from "./useAuthErrorHandler";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
 
 export const useTopicMutations = (
     topicId: number, 
@@ -18,8 +19,8 @@ export const useTopicMutations = (
     const { pathname } = useLocation();
     const { handleAuthError } = useAuthErrorHandler();
 
-    const handleError = (error: Error, isToast: boolean) => {
-        if (error.message === "Unauthorized") {
+    const handleError = (error: ApiErrorResponse, isToast: boolean) => {
+        if (error.status === 401) {
             handleAuthError(pathname);
         } else {
             if (isToast) {
@@ -37,7 +38,7 @@ export const useTopicMutations = (
 
     const mutateUpdate = useMutation({
         mutationFn: updateTopic,
-        onError: (error) => handleError(error, false),
+        onError: (error: ApiErrorResponse) => handleError(error, false),
         onSuccess: () => {
             toast.success("Tópico actualizado!");
             refetchTopic();
@@ -48,7 +49,7 @@ export const useTopicMutations = (
 
     const mutateDelete = useMutation({
         mutationFn: deleteTopic,
-        onError: (error) => handleError(error, true),
+        onError: (error: ApiErrorResponse) => handleError(error, true),
         onSuccess: () => {
             toast.success("Tópico eliminado!");
             navigate('/');
@@ -59,7 +60,7 @@ export const useTopicMutations = (
     
     const mutateFollow = useMutation({
         mutationFn: toggleFollowTopic,
-        onError: (error) => handleError(error, false),
+        onError: (error: ApiErrorResponse) => handleError(error, false),
         onSuccess: (data) => {
             if (data?.followedAt) {
                 toast.success("Ahora sigues este tópico.");

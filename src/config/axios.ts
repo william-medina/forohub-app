@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useAuthStore } from "../stores/useAuthStore";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
@@ -8,7 +9,7 @@ const api = axios.create({
 
 // Función para refrescar el token
 const refreshAccessToken = async () => {
-    const { setAccessToken, resetData } = useAuthStore.getState();
+    const { setAccessToken } = useAuthStore.getState();
     try {
         const res = await axios.post(
             `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
@@ -19,7 +20,7 @@ const refreshAccessToken = async () => {
         setAccessToken(newAccessToken);
         return newAccessToken;
     } catch (err) {
-        resetData(); // limpia sesión → logout
+        //resetData(); // limpia sesión → logout
         throw err;
     }
 };
@@ -40,22 +41,41 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(
     (response) => response,
     async (error) => {
-
         const { isAuthenticated } = useAuthStore.getState();
 
-        if (
-            isAuthenticated &&
-            error.response &&
-            error.response.status === 401 &&
-            error.response.data.error !== "Las credenciales proporcionadas son incorrectas."
-        ) {
-            const newAccessToken = await refreshAccessToken();
-            error.config.headers.Authorization = `Bearer ${newAccessToken}`;
-            return api.request(error.config);
+        if (error.response) {
+
+            const data = error.response.data as ApiErrorResponse;
+
+            // Token expirado → intentar refresh
+            if (
+                isAuthenticated &&
+                data.status === 401 &&
+                data.path !== "/api/auth/login"
+            ) {
+                try {
+                    const newAccessToken = await refreshAccessToken();
+                    error.config.headers.Authorization = `Bearer ${newAccessToken}`;
+                    return api.request(error.config);
+                } catch (refreshError) {
+                    return Promise.reject(refreshError);
+                }
+            }
+
+            // Rechazar con un objeto consistente con ApiErrorResponse
+            return Promise.reject(data);
         }
 
-        return Promise.reject(error);
+        // Si no hay response → error de red
+        return Promise.reject({
+                message: "No se pudo conectar con el servidor.",
+                status: 500,
+                error: "NETWORK_ERROR",
+                path: "",
+                timestamp: new Date().toISOString(),
+        } as ApiErrorResponse);
     }
 );
+
 
 export default api;

@@ -6,6 +6,7 @@ import { updatePasswordWithToken } from "../../api/AuthAPI";
 import { toast } from "react-toastify";
 import FormWrapper from "../../components/FormWrapper";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 function ResetPassword() {
 
@@ -24,7 +25,7 @@ function ResetPassword() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: updatePasswordWithToken,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {

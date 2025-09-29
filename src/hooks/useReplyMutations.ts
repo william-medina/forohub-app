@@ -6,6 +6,7 @@ import { ActionState } from "../types";
 import { Dispatch } from "react";
 import { FormMessageStatus } from "../components/FormStatusMessage";
 import { useAuthErrorHandler } from "./useAuthErrorHandler";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
 
 export const useReplyMutations = (
     topicId: number, 
@@ -17,8 +18,8 @@ export const useReplyMutations = (
     const { pathname } = useLocation();
     const { handleAuthError } = useAuthErrorHandler();
 
-    const handleError = (error: Error, isToast: boolean) => {
-        if (error.message === "Unauthorized") {
+    const handleError = (error: ApiErrorResponse, isToast: boolean) => {
+        if (error.status === 401) {
             handleAuthError(pathname);
         } else {
             if (isToast) {
@@ -36,7 +37,7 @@ export const useReplyMutations = (
 
     const mutateSolution = useMutation({
         mutationFn: setCorrectReply,
-        onError: (error) => handleError(error, true),
+        onError: (error: ApiErrorResponse) => handleError(error, true),
         onSuccess: () => {
             toast.success("Solución cambiada!");
             refetchTopic();
@@ -45,7 +46,7 @@ export const useReplyMutations = (
 
     const mutateUpdate = useMutation({
         mutationFn: updateReply,
-        onError: (error) => handleError(error, false),
+        onError: (error: ApiErrorResponse) => handleError(error, false),
         onSuccess: () => {
             toast.success("Respuesta actualizada!");
             refetchTopic();
@@ -56,7 +57,7 @@ export const useReplyMutations = (
 
     const mutateDelete = useMutation({
         mutationFn: deleteReply,
-        onError: (error) => handleError(error, true),
+        onError: (error: ApiErrorResponse) => handleError(error, true),
         onSuccess: () => {
             toast.success("Respuesta eliminada!");
             refetchTopic();

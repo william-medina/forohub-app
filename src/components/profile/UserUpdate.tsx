@@ -7,6 +7,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 import { useAuthErrorHandler } from "../../hooks/useAuthErrorHandler";
 import FormStatusMessage, { FormMessageStatus } from "../FormStatusMessage";
 import { UpdateCurrentUserPasswordForm } from "../../types/userTypes";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 function UserUpdate() {
 
@@ -36,8 +37,8 @@ function UserUpdate() {
 
     const { mutate: mutatePassword, isPending: isPasswordPending } = useMutation({
         mutationFn: updateCurrentPassword,
-        onError: (error) => {
-            if(error.message === "Unauthorized") {
+        onError: (error: ApiErrorResponse) => {
+            if(error.status === 401) {
                 handleAuthError(pathname);
             } else {
                 setErrorPasswordMessage({type: 'error', message:  error.message || "Error inesperado. Intenta nuevamente."});
@@ -52,8 +53,8 @@ function UserUpdate() {
 
     const { mutate: mutateUsername, isPending: isUsernamePending } = useMutation({
         mutationFn: updateUsername,
-        onError: (error) => {
-            if(error.message === "Unauthorized") {
+        onError: (error: ApiErrorResponse) => {
+            if(error.status === 401) {
                 handleAuthError(pathname);
             } else {
                 setErrorUsernameMessage({type: 'error', message:  error.message || "Error inesperado. Intenta nuevamente."});

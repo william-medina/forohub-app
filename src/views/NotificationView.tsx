@@ -95,7 +95,7 @@ function NotificationView() {
                         <span>Error al cargar notificaciones.</span>
                     </div>
                 ) : data?.length! > 0 ? (
-                    <div className="max-h-[70vh] overflow-y-auto">
+                    <div className="max-h-[70vh] overflow-y-auto scheme-dark">
                         {data?.map((notify) => (
                             <div
                                 key={notify.id}

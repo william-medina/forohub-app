@@ -5,6 +5,7 @@ import { confirmAccount, requestConfirmationCode } from '../../api/AuthAPI';
 import { toast } from 'react-toastify';
 import FormStatusMessage, { FormMessageStatus } from '../../components/FormStatusMessage';
 import { RequestConfirmationCodeForm } from '../../types/userTypes';
+import { ApiErrorResponse } from '../../types/errorResponseTypes';
 
 function ConfirmAccount() {
 
@@ -63,7 +64,7 @@ function ConfirmAccount() {
 
     const { mutate: resendConfirmationEmail, isPending } = useMutation({
         mutationFn: requestConfirmationCode,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setFormStatus({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { requestConfirmationCode } from "../../api/AuthAPI";
 import { toast } from "react-toastify";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 function RequestCodeView() {
     
@@ -20,7 +21,7 @@ function RequestCodeView() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: requestConfirmationCode,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {

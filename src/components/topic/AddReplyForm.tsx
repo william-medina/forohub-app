@@ -6,6 +6,7 @@ import { CreateReplyForm } from "../../types/replyTypes";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { useAuthErrorHandler } from "../../hooks/useAuthErrorHandler";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 type AddReplyFormProps = {
     topicId: number
@@ -28,8 +29,8 @@ function AddReplyForm({topicId} : AddReplyFormProps) {
 
     const { mutate, isPending } = useMutation({
         mutationFn: addReply,
-        onError: (error) => {
-            if(error.message === "Unauthorized") {
+        onError: (error: ApiErrorResponse) => {
+            if(error.status === 401) {
                 handleAuthError(pathname);
             } else {
                 setErrorMessage({type: 'error', message:  error.message || "Error inesperado. Intenta nuevamente."});

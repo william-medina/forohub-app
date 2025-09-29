@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { FormMessageStatus } from "../../components/FormStatusMessage";
 import { Link } from "react-router-dom";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 
 function ForgotPasswordView() {
@@ -21,7 +22,7 @@ function ForgotPasswordView() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: forgotPassword,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {

@@ -8,6 +8,7 @@ import { createTopic } from "../api/TopicAPI";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthErrorHandler } from "../hooks/useAuthErrorHandler";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
 
 function CreateTopicView() {
 
@@ -36,8 +37,8 @@ function CreateTopicView() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: createTopic,
-        onError: (error) => {
-            if(error.message === "Unauthorized") {
+        onError: (error: ApiErrorResponse) => {
+            if(error.status === 401) {
                 handleAuthError(pathname);
             } else {
                 setErrorMessage({type: 'error', message:  error.message || "Error inesperado. Intenta nuevamente."});

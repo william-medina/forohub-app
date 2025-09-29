@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { getAllNotificationsByUser } from "../api/NotifyAPI";
 import { logoutUser } from "../api/AuthAPI";
 import { toast } from "react-toastify";
+import { ApiErrorResponse } from "../types/errorResponseTypes";
+import { Notify } from "../types/notifyTypes";
 
 type HeaderProps = {
     user: UserData | undefined
@@ -23,7 +25,7 @@ function Header({user} : HeaderProps) {
 
     const { mutate, isPending } = useMutation({
         mutationFn: logoutUser,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             toast.error(error.message || 'Error inesperado. Intenta nuevamente.');
         },
         onSuccess: () => {
@@ -36,12 +38,13 @@ function Header({user} : HeaderProps) {
         mutate();
     };
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading } = useQuery<Notify[] | undefined, ApiErrorResponse>({
         queryKey: ["notifications"],
         queryFn: getAllNotificationsByUser,
         enabled: userData !== undefined && isAuthenticated,
         refetchInterval: 30000,
     });
+
 
     useEffect(() => {
         setIsLoadingNotify(isLoading);

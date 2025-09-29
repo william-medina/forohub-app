@@ -6,6 +6,7 @@ import { createAccount } from "../../api/AuthAPI";
 import { useEffect, useState } from "react";
 import { FormMessageStatus } from "../../components/FormStatusMessage";
 import { toast } from "react-toastify";
+import { ApiErrorResponse } from "../../types/errorResponseTypes";
 
 function RegisterView() {
 
@@ -23,7 +24,7 @@ function RegisterView() {
 
     const { mutate, isPending } = useMutation({
         mutationFn: createAccount,
-        onError: (error) => {
+        onError: (error: ApiErrorResponse) => {
             setErrorMessage({ type: "error", message: error.message || "Error inesperado. Intenta nuevamente." });
         },
         onSuccess: () => {
