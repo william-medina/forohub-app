@@ -45,6 +45,7 @@ function ResetPassword() {
             title="Actualizar Password"
             button="Actualizar"
             fields={[
+                { name: "username", type: "text", placeholder: "", label: "", autoComplete: "username", hidden: true },
                 { name: "password", type: "password", placeholder: "********", label: "Nuevo Password", autoComplete: "new-password" },
                 { name: "password_confirmation", type: "password", placeholder: "********", label: "Confirmar Nuevo Password", autoComplete: "new-password" },
             ]}

@@ -10,6 +10,7 @@ type FormWrapperProps<T> = {
         placeholder: string;
         label: string;
         autoComplete?: string;
+        hidden?: boolean;
     }[];
     formData: T;
     setFormData: React.Dispatch<React.SetStateAction<T>>;
@@ -50,19 +51,31 @@ function FormWrapper<T>({
                     {errorMessage && <FormStatusMessage formStatus={errorMessage} />}
                     {fields.map((field) => (
                         <div key={field.name} className="mt-5">
-                            <label htmlFor={field.name} className="block text-sm font-medium text-gray-300 mb-1 sm-500:mb-2">
-                                {field.label}
-                            </label>
-                            <input
-                                type={field.type}
-                                id={field.name}
-                                name={field.name}
-                                className="w-full p-2 sm-500:p-3 text-sm sm-500:text-base rounded-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-teal-400"
-                                placeholder={field.placeholder}
-                                value={(formData as any)[field.name]}
-                                onChange={handleChange}
-                                autoComplete={field.autoComplete}
-                            />
+                            {field.hidden ? (
+                                <input
+                                    type={field.type}
+                                    name={field.name}
+                                    defaultValue={(formData as any)[field.name]}
+                                    autoComplete={field.autoComplete}
+                                    hidden
+                                />
+                            ) : (
+                                 <>
+                                    <label htmlFor={field.name} className="block text-sm font-medium text-gray-300 mb-1 sm-500:mb-2">
+                                            {field.label}
+                                    </label>
+                                    <input
+                                        type={field.type}
+                                        id={field.name}
+                                        name={field.name}
+                                        className="w-full p-2 sm-500:p-3 text-sm sm-500:text-base rounded-sm bg-gray-700 text-gray-300 placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-teal-400"
+                                        placeholder={field.placeholder}
+                                        value={(formData as any)[field.name]}
+                                        onChange={handleChange}
+                                        autoComplete={field.autoComplete}
+                                    />
+                                </>
+                            )}
                         </div>
                     ))}
                     {extraTopLeft && <div className="text-xs sm-500:text-sm leading-4 mt-2 text-left">{extraTopLeft}</div>}

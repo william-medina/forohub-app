@@ -134,6 +134,8 @@ function UserUpdate() {
                             <FormStatusMessage formStatus={errorPasswordMessage}/>
                         )}
                         <form onSubmit={handlePasswordSubmit} className="mt-3">
+                            <input type="text" name="username" autoComplete="username" defaultValue={usernameForm.username} hidden />
+
                             <div className="mb-2">
                                 <input
                                     type="password"
