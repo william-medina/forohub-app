@@ -120,7 +120,7 @@ export async function getCurrentUser() {
 
 export async function logoutUser() {
     try {
-        const { data } = await api.post('/auth/logout');
+        const { data } = await api.post('/auth/token/logout');
 
         useAuthStore.getState().setAccessToken(null);
         

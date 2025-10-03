@@ -12,7 +12,7 @@ const refreshAccessToken = async () => {
     const { setAccessToken } = useAuthStore.getState();
     try {
         const res = await axios.post(
-            `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
+            `${import.meta.env.VITE_API_URL}/auth/token/refresh`,
             {},
             { withCredentials: true }
         );
