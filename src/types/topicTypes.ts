@@ -34,7 +34,7 @@ export const topicSchema = z.object({
     repliesCount: z.number(),
     status: statusSchema,
     createdAt: z.string(),
-    updateAt: z.string()
+    updatedAt: z.string()
 })
 
 export const topicDetailsSchema = topicSchema.pick({
@@ -43,7 +43,7 @@ export const topicDetailsSchema = topicSchema.pick({
     description: true,
     status: true,
     createdAt: true,
-    updateAt: true,
+    updatedAt: true,
 }).extend({
     course: courseSchema,
     author: authorSchema,

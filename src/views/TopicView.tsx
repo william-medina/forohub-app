@@ -276,7 +276,7 @@ function TopicView() {
                     <AuthorInfo 
                         isAuthor={actionStates.isAuthor}
                         author={topic.author}
-                        updatedAt={topic.updateAt}
+                        updatedAt={topic.updatedAt}
                     />
 
                 </section>
