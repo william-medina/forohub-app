@@ -14,6 +14,7 @@ import ResetPassword from "./views/auth/ResetPassword";
 import ConfirmAccount from "./views/auth/ConfirmAccountView";
 import NotFoundPage from "./views/NotFoundPage";
 import NotificationView from "./views/NotificationView";
+import OAuthCallback from "./views/auth/OAuth2Callback";
 
 function Router() {
 	return (
@@ -28,6 +29,7 @@ function Router() {
 				<Route element={<PublicLayout />}>
 					<Route path="/" element={<HomeView />} />
 					<Route path="/login" element={<LoginView />} />
+					<Route path="/oauth2/callback" element={<OAuthCallback />} />
 					<Route path="/topic/:topicId" element={<TopicView />} />
 					<Route path="/register" element={<RegisterView />} />
 					<Route path="/forgot-password" element={<ForgotPasswordView />} />

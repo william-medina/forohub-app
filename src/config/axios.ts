@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "../stores/useAuthStore";
 import { ApiErrorResponse } from "../types/errorResponseTypes";
+import { AppConfig } from "./env";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
@@ -12,11 +13,11 @@ const refreshAccessToken = async () => {
     const { setAccessToken } = useAuthStore.getState();
     try {
         const res = await axios.post(
-            `${import.meta.env.VITE_API_URL}/auth/token/refresh`,
+            AppConfig.isMicroservices ? `${import.meta.env.VITE_TOKEN_URL}/refresh` : `${import.meta.env.VITE_API_URL}/auth/token/refresh`,
             {},
             { withCredentials: true }
         );
-        const newAccessToken = res.data.accessToken;
+        const newAccessToken = AppConfig.isMicroservices ?  res.data.access_token : res.data.accessToken;
         setAccessToken(newAccessToken);
         return newAccessToken;
     } catch (err) {

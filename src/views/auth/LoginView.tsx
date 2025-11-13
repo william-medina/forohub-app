@@ -7,6 +7,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 import FormWrapper from "../../components/FormWrapper";
 import { FormMessageStatus } from "../../components/FormStatusMessage";
 import { ApiErrorResponse } from "../../types/errorResponseTypes";
+import { AppConfig } from "../../config/env";
 
 function LoginView() {
     const queryClient = useQueryClient();
@@ -18,6 +19,14 @@ function LoginView() {
         username: "",
         password: "",
     });
+
+    useEffect(() => {
+        if(AppConfig.isMicroservices) {
+            const redirectUri = `${window.location.origin}/oauth2/callback`;
+            const authUrl = `${AppConfig.authUrl}/oauth2/authorize?response_type=code&scope=write&response_mode=form_post&client_id=${AppConfig.clientId}&redirect_uri=${redirectUri}`;
+            window.location.href = authUrl;
+        }
+    }, [])
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -40,6 +49,14 @@ function LoginView() {
     const handleSubmit = (data: UserLoginForm) => {
         mutate(data);
     };
+
+    if (AppConfig.isMicroservices) {
+        return (
+            <div className="flex justify-center items-center h-[90vh]">
+                <div className="w-12 sm-500:w-16 h-12 sm-500:h-16 border-t-4 border-teal-400 border-solid rounded-full animate-spin" />
+            </div>
+        );
+    } 
 
     return (
         <FormWrapper

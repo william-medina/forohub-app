@@ -15,8 +15,9 @@
 5. [🔧 Instrucciones](#-instrucciones)
 6. [📸 Capturas de Pantalla](#-capturas-de-pantalla)
 7. [🚀 Ver el Proyecto en Producción](#-ver-el-proyecto-en-producción)
-8. [📜 Licencia](#-licencia)
-9. [👨‍💻 Autor](#-autor)
+8. [⚙️ Integración con Arquitectura de Microservicios](#️-integración-con-arquitectura-de-microservicios)
+9. [📜 Licencia](#-licencia)
+10. [👨‍💻 Autor](#-autor)
 
 ## 📝 Descripción
 
@@ -213,6 +214,55 @@ El frontend de **ForoHub App** se encuentra desplegado y conectado a la API, lis
 
 
 > **⚠️ Importante**: Ten en cuenta que la API podría tardar unos instantes en responder si no ha sido utilizada recientemente, ya que el servidor necesita tiempo para iniciarse. Esto es normal debido a las limitaciones del entorno de ejecución. Si experimentas algún retraso, espera unos minutos hasta que el servidor esté operativo e inténtalo nuevamente.
+
+## ⚙️ Integración con Arquitectura de Microservicios
+
+La App de **ForoHub** puede conectarse tanto a una **API monolítica** como a un **backend con arquitectura de microservicios**. Para la integración con microservicios y autenticación mediante OAuth2, se deben configurar algunas variables de entorno clave en el frontend.
+
+### Variables de Entorno Clave
+
+Crea o modifica el archivo `.env.local` en la raíz del proyecto con las siguientes variables:
+
+```env
+# Indica si la app se conecta a microservicios
+VITE_IS_MICROSERVICES=true
+
+# Configuración de OAuth2
+VITE_OAUTH2_CLIENT_ID=forohub-frontend
+VITE_AUTH_URL=http://localhost:9000
+VITE_TOKEN_URL=http://localhost:9001/token
+
+# URL base de la API para consumir datos de microservicios
+VITE_API_URL=http://localhost:8080/api
+```
+### Cómo Funciona la Integración
+
+1. **Autenticación OAuth2**:  
+   - Cuando el usuario hace clic en **Login** desde el frontend de ForoHub, se **redirige automáticamente al Auth Server** (`VITE_AUTH_URL`).  
+   - En el Auth Server, se presenta un **formulario de login** idéntico al del frontend, pero gestionado directamente por el backend.  
+   - Tras autenticarse correctamente, el Auth Server devuelve un **authorization code** al frontend mediante redirección.
+
+2. **Intermediario Token Gateway**:  
+   - El **Token Gateway** (`VITE_TOKEN_URL`) actúa como intermediario entre el frontend y el Auth Server.  
+   - Su función principal es **intercambiar el authorization code por access token y refresh token**.  
+   - También puede **generar un nuevo access token usando el refresh token** y manejar revocación de sesiones.  
+
+3. **Consumo de Microservicios vía API Gateway**:  
+   - El frontend consume todos los microservicios de recursos a través del **API Gateway**, que unifica los endpoints.  
+   - Todos los requests a los microservicios deben incluir el **access token** en el encabezado `Authorization`.  
+   - El API Gateway valida el token antes de reenviar la solicitud al microservicio correspondiente.  
+
+
+4. **Cambio entre Monolito y Microservicios**:  
+   - La variable `VITE_IS_MICROSERVICES` permite alternar entre el **backend monolítico** y la **arquitectura de microservicios** sin cambiar código.  
+   - Si está en `false`, el frontend apunta a `VITE_API_URL` que referencia la **API monolítica**.  
+   - Si está en `true`, el frontend apunta a `VITE_API_URL`, que corresponde al **API Gateway**, el cual expone todos los microservicios de recursos. Para obtener los tokens necesarios de acceso, las solicitudes pasan primero por el **Token Gateway**, que se comunica con el **Auth Server** vía OAuth2.
+
+### Repositorio del Backend con Microservicios
+
+El backend con arquitectura de microservicios de **ForoHub** se encuentra en un repositorio separado. Puedes encontrarlo aquí:
+
+- [ForoHub Microservices](https://github.com/william-medina/forohub-microservices) - Contiene la implementación en Spring Boot.
 
 
 

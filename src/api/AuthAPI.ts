@@ -1,4 +1,5 @@
 import api from "../config/axios";
+import { AppConfig } from "../config/env";
 import { useAuthStore } from "../stores/useAuthStore";
 import { Token, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UpdateCurrentUserPasswordForm, userDataSchema, UserLoginForm, UsernameForm, UserRegistrationForm, tokenSchema, userStatsSchema } from "../types/userTypes";
 import { handleAxiosError } from "../utils";
@@ -120,7 +121,8 @@ export async function getCurrentUser() {
 
 export async function logoutUser() {
     try {
-        const { data } = await api.post('/auth/token/logout');
+        const url = AppConfig.isMicroservices ? AppConfig.tokenUrl + "/logout" : '/auth/token/logout'
+        const { data } = await api.post(url);
 
         useAuthStore.getState().setAccessToken(null);
         
